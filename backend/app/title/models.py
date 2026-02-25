@@ -3,10 +3,10 @@ import uuid
 from django.db import models
 from django.utils.text import slugify
 
-from backend.app.author.models import Author
-from backend.app.genre.models import Genre
-from backend.app.publisher.models import Publisher
-from backend.app.tag.models import Tag
+from app.author.models import Author
+from app.genre.models import Genre
+from app.publisher.models import Publisher
+from app.tag.models import Tag
 
 
 class Publisher(models.Model):
