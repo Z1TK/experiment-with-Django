@@ -2,6 +2,7 @@ import uuid
 
 from django.db import models
 from django.utils.text import slugify
+from datetime import timezone
 
 from app.author.models import Author
 from app.genre.models import Genre
@@ -9,7 +10,7 @@ from app.publisher.models import Publisher
 from app.tag.models import Tag
 
 
-class Publisher(models.Model):
+class Title(models.Model):
     class TypeChoices(models.TextChoices):
         MANGA = "manga", "Manga"
         MANHWA = "manhwa", "Manhwa"
@@ -33,10 +34,10 @@ class Publisher(models.Model):
 
     id = models.IntegerField(primary_key=True)
     title = models.CharField(max_length=255)
-    slug = models.CharField(max_length=255, unique=True, blank=True)
-    alternative_title = models.CharField(max_length=255, unique=True, null=True)
+    slug = models.SlugField(max_length=255, unique=True, blank=True)
+    alternative_title = models.CharField(max_length=255, unique=True, blank=True)
     description = models.TextField()
-    cover = models.CharField(max_length=255)
+    cover = models.ImageField(upload_to='backend/images/titles/')
     type = models.CharField(
         max_length=20, choices=TypeChoices, default=TypeChoices.MANGA
     )
@@ -50,6 +51,8 @@ class Publisher(models.Model):
     )
     tags = models.ManyToManyField(Tag, related_name="titles")
     genres = models.ManyToManyField(Genre, related_name="titles")
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
 
     def save(self, *args, **kwargs):
         if not self.slug:
