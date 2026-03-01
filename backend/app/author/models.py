@@ -10,7 +10,7 @@ class Author(models.Model):
     slug = models.SlugField(max_length=255, unique=True, blank=True)
     pseudonym = models.CharField(max_length=255, unique=True, blank=True)
     description = models.TextField(blank=True)
-    image = models.ImageField(upload_to='backend/images/authors/', blank=True)
+    image = models.ImageField(upload_to="backend/images/authors/", blank=True)
 
     def save(self, *args, **kwargs):
         if not self.slug:

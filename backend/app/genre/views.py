@@ -1,3 +1,9 @@
+from app.genre.models import Genre
+from app.genre.serializer import GenreSerializer
+from common.base_api_view import BaseView
 from django.shortcuts import render
 
-# Create your views here.
+
+class GenreView(BaseView):
+    model = Genre
+    serializer_model = GenreSerializer

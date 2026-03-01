@@ -1,13 +1,12 @@
 import uuid
-
-from django.db import models
-from django.utils.text import slugify
 from datetime import timezone
 
 from app.author.models import Author
 from app.genre.models import Genre
 from app.publisher.models import Publisher
 from app.tag.models import Tag
+from django.db import models
+from django.utils.text import slugify
 
 
 class Title(models.Model):
@@ -37,7 +36,7 @@ class Title(models.Model):
     slug = models.SlugField(max_length=255, unique=True, blank=True)
     alternative_title = models.CharField(max_length=255, unique=True, blank=True)
     description = models.TextField()
-    cover = models.ImageField(upload_to='backend/images/titles/')
+    cover = models.ImageField(upload_to="backend/images/titles/")
     type = models.CharField(
         max_length=20, choices=TypeChoices, default=TypeChoices.MANGA
     )

@@ -10,7 +10,7 @@ class Publisher(models.Model):
     slug = models.SlugField(max_length=255, unique=True, blank=True)
     another_name = models.CharField(max_length=255, unique=True, blank=True)
     description = models.TextField(blank=True)
-    image = models.ImageField(upload_to='backend/images/publishers/', blank=True)
+    image = models.ImageField(upload_to="backend/images/publishers/", blank=True)
 
     def save(self, *args, **kwargs):
         if not self.slug:

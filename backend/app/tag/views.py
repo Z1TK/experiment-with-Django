@@ -1,3 +1,8 @@
-from django.shortcuts import render
+from app.tag.models import Tag
+from app.tag.serializer import TagSerializer
+from common.base_api_view import BaseView
 
-# Create your views here.
+
+class TagView(BaseView):
+    model = Tag
+    serializer_model = TagSerializer
